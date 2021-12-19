@@ -1,0 +1,46 @@
+CREATE DATABASE praticapostgresql03;
+
+CREATE TABLE tipos_produto(
+	codigo SERIAL PRIMARY KEY NOT NULL,
+	descricao VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE produtos(
+	codigo SERIAL PRIMARY KEY NOT NULL,
+	descricao VARCHAR(50) NOT NULL,
+	preco MONEY NOT NULL,
+	codigo_tipo INT NOT NULL,
+	FOREIGN KEY(codigo_tipo) REFERENCES tipos_produto(codigo)
+);
+
+
+INSERT INTO tipos_produto(descricao) VALUES ('Computador');
+INSERT INTO tipos_produto(descricao) VALUES ('Impressora');
+INSERT INTO tipos_produto(descricao) VALUES ('Notebook');
+
+SELECT * FROM tipos_produto;
+
+INSERT INTO produtos(descricao, preco, codigo_tipo) VALUES ('Desktop', 1200, 1);
+INSERT INTO produtos(descricao, preco, codigo_tipo) VALUES ('Laptop', 1800, 3);
+INSERT INTO produtos(descricao, preco, codigo_tipo) VALUES ('Impressora Jato de Tinta', 690, 2);
+
+SELECT * FROM produtos;
+
+BEGIN TRANSACTION;
+INSERT INTO tipos_produto(descricao) VALUES ('Equipamentos');
+INSERT INTO tipos_produto(descricao) VALUES ('Nobreak');
+COMMIT;
+
+BEGIN TRANSACTION;
+INSERT INTO tipos_produto(descricao) VALUES ('Tipo A');
+INSERT INTO tipos_produto(descricao) VALUES ('Tipo B');
+
+ROLLBACK;
+
+
+BEGIN TRANSACTION;
+INSERT INTO tipos_produto(descricao) VALUES ('Tipo C');
+INSERT INTO tipos_produto(descricao) VALUES ('Tipo D');
+COMMIT;
+
+ROLLBACK;
