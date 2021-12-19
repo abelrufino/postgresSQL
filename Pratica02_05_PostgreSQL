@@ -1,0 +1,11 @@
+ALTER TABLE tipos_produtos ADD peso DECIMAL(8,2);
+ALTER TABLE professores ALTER COLUMN telefone TYPE "varchar";
+
+SELECT * FROM tipos_produtos;
+SELECT * FROM produtos;
+
+DROP TABLE produtos;
+DROP TABLE tipos_produtos;
+
+DROP DATABASE praticapostgresql02;
+
