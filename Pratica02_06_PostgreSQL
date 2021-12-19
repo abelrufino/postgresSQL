@@ -1,0 +1,37 @@
+CREATE USER estagiario WITH PASSWORD '123456';
+
+CREATE DATABASE praticapostgresql02;
+
+CREATE TABLE empresas(
+	id SERIAL PRIMARY KEY NOT NULL,
+	nome VARCHAR(50) NOT NULL,
+	funcionarios INT NOT NULL,
+	cidade VARCHAR(50) NOT NULL
+);
+
+GRANT ALL ON empresas TO estagiario;
+
+GRANT USAGE, SELECT ON SEQUENCE empresas_id_seq TO estagiario;
+
+SELECT * FROM empresas;
+
+INSERT INTO empresas(nome, funcionarios, cidade) VALUES ('Apple', 4500, 'Los Altos, Califórnia, EUA' );
+INSERT INTO empresas(nome, funcionarios, cidade) VALUES ('Microsoft', 23500, 'Albuquerque, Novo México, EUA');
+INSERT INTO empresas(nome, funcionarios,cidade) VALUES ('Amazon', 9800, 'Bellevue, Washington, EUA');
+
+UPDATE empresas SET funcionarios = 11999 
+WHERE id = 3;
+
+DELETE FROM empresas
+WHERE id = 2;
+
+REVOKE ALL ON empresas FROM estagiario;
+
+REVOKE USAGE, SELECT ON SEQUENCE empresas_id_seq FROM estagiario;
+
+GRANT SELECT ON empresas TO estagiario;
+
+DROP USER estagiario;
+
+
+
