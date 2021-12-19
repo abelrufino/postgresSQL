@@ -1,0 +1,44 @@
+SELECT * FROM tipos_produtos;
+
+SELECT * FROM produtos;
+
+INSERT INTO tipos_produtos(descricao) VALUES ('Notebook');
+INSERT INTO produtos(descricao, preco, codigo_tipo) VALUES ('Notebook Dell', '1200', 1);
+
+UPDATE tipos_produtos SET descricao = 'Nobreak' 
+WHERE codigo = 3;
+
+UPDATE produtos SET descricao = 'Notebook Dell', preco = 2800; 
+
+
+UPDATE produtos SET descricao = 'Notebook Dell', preco = 1200, codigo_tipo = 3
+WHERE codigo = 5;
+
+UPDATE produtos SET descricao = 'Desktop', preco = 1200,  codigo_tipo = 1
+WHERE codigo = 1;
+
+UPDATE produtos SET descricao = 'Laptop', preco = 1800, codigo_tipo = 1
+WHERE codigo = 2;
+
+UPDATE produtos SET descricao = 'Impressora Jato de Tinta', preco = 300, codigo_tipo = 2
+WHERE codigo = 3;
+
+UPDATE produtos SET descricao = 'Impressora Laser', preco = 500, codigo_tipo = 2
+WHERE codigo = 4;
+
+DELETE FROM produtos 
+WHERE codigo = 6;
+
+DELETE FROM produtos
+WHERE codigo = 7;
+
+
+UPDATE produtos SET codigo_tipo = 1
+WHERE codigo = 5;
+
+DELETE FROM tipos_produtos
+WHERE codigo = 5;
+
+
+
+
