@@ -1,0 +1,66 @@
+-- CREATE DATABASE praticapostgresql19;
+
+-- SUBCONSULTA
+
+CREATE TABLE escritorios(
+	id SERIAL PRIMARY KEY,
+	pais VARCHAR(30) NOT NULL
+);
+
+CREATE TABLE funcionarios(
+	id SERIAL PRIMARY KEY,
+	nome VARCHAR(20) NOT NULL,
+	sobrenome VARCHAR(20) NOT NULL,
+	id_escritorio INT REFERENCES escritorios(id) NOT NULL
+);
+
+
+CREATE TABLE pagamentos(
+	id SERIAL PRIMARY KEY,
+	salario DECIMAL(8,2) NOT NULL,
+	data DATE NOT NULL,
+	id_funcionario INT REFERENCES funcionarios(id) NOT NULL
+);
+
+INSERT INTO escritorios(pais) VALUES ('Brasil');
+INSERT INTO escritorios(pais) VALUES ('Estados Unidos');
+INSERT INTO escritorios(pais) VALUES ('Alemanha');
+INSERT INTO escritorios(pais) VALUES ('Inglaterra');
+
+SELECT * FROM escritorios;
+
+INSERT INTO funcionarios(nome, sobrenome, id_escritorio) VALUES ('Abel', 'Rufino', 1);
+INSERT INTO funcionarios(nome, sobrenome, id_escritorio) VALUES ('Esther', 'Machado', 2);
+INSERT INTO funcionarios(nome, sobrenome, id_escritorio) VALUES ('Mikail', 'Schumer', 3);
+INSERT INTO funcionarios(nome, sobrenome, id_escritorio) VALUES ('Cristiano', 'Ronaldo', 4);
+
+SELECT * FROM funcionarios;
+
+INSERT INTO pagamentos(salario, data, id_funcionario) VALUES ('347.55', '2019-03-17', 3);
+INSERT INTO pagamentos(salario, data, id_funcionario) VALUES ('9458.46', '2019-03-18', 4);
+INSERT INTO pagamentos(salario, data, id_funcionario) VALUES ('4669.6', '2020-03-19', 5);
+INSERT INTO pagamentos(salario, data, id_funcionario) VALUES ('2770.32', '2021-03-20', 6);
+
+SELECT * FROM pagamentos;
+
+
+-- EXEMPLO 1 
+SELECT nome, sobrenome FROM funcionarios
+WHERE id_escritorio IN (SELECT id FROM escritorios WHERE pais = 'Brasil');
+
+-- SEM SUBCONSULTA
+SELECT f.nome, f.sobrenome FROM funcionarios f , escritorios e
+WHERE f.id_escritorio = e.id AND e.pais = 'Brasil';
+
+-- EXEMPLO 2
+SELECT f.nome, f.sobrenome FROM pagamentos p, funcionarios f , escritorios e 
+WHERE f.id_escritorio = e.id 
+		AND f.id = p.id_funcionario
+		AND p.salario = (SELECT MAX(salario) FROM pagamentos);
+		
+-- EXEMPLO 3
+SELECT f.nome, f.sobrenome, e.pais, p.salario 
+	FROM pagamentos p, funcionarios f, escritorios e
+	WHERE f.id_escritorio = e.id 
+		AND f.id = p.id_funcionario
+		AND p.salario < (SELECT AVG(salario) FROM pagamentos);		
