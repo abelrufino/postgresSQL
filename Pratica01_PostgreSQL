@@ -1,3 +1,5 @@
+Bancos de Dados SQL e NoSQL do básico ao avançado
+
 CREATE TABLE tipos_produtos(
 	id SERIAL PRIMARY KEY,
 	descricao CHARACTER VARYING(50) NOT NULL
