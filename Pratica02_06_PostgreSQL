@@ -1,3 +1,6 @@
+12 de jul 2024
+Bancos de Dados SQL e NoSQL do básico ao avançado
+
 CREATE USER estagiario WITH PASSWORD '123456';
 
 CREATE DATABASE praticapostgresql02;
