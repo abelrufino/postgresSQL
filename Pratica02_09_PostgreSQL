@@ -11,3 +11,10 @@ WHERE p.codigo_tipo = tp.codigo
 
 SELECT p.codigo, p.descricao, p.preco, tp.descricao AS Tipo FROM produtos AS p, tipos_produto AS tp
 WHERE p.codigo_tipo = tp.codigo
+
+Corrigindo complito em repositórios local e remoto 
+git pull 
+
+git config pull.rebase false
+git config pull.rebase true
+git config pll.ff only
