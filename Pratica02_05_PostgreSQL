@@ -1,3 +1,6 @@
+12 de jul 2024
+Bancos de Dados SQL e NoSQL do básico ao avançado
+
 ALTER TABLE tipos_produtos ADD peso DECIMAL(8,2);
 ALTER TABLE professores ALTER COLUMN telefone TYPE "varchar";
 
