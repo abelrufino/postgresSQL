@@ -1,3 +1,6 @@
+11 de jul 2024
+Bancos de Dados SQL e NoSQL do básico ao avançado
+
 CREATE DATABASE praticapostgresql02;
 
 CREATE TABLE tipos_produtos(
